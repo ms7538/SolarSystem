@@ -1,4 +1,6 @@
 package ms.solarsystem;
+//Version 1.1
+
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
