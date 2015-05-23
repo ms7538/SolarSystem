@@ -84,7 +84,7 @@ public class SolarSystemView extends View {
     double dayspass= (yr * 365.25)+dyr-735745.5;
     private double earthdegrees=(dayspass*0.98563);
     private double vencnv =1.625524007069; //venus covers 1.622.. degress while earth covers 1 degree
-    private double mrccnv =3.8;//203082904;
+    private double mrccnv =4.0;//203082904;
     private double mrscnv=0.5316864552961;///
     private double theta=130-earthdegrees;// earth at 139 on may 12 2015
     private double Vtheta=200-(earthdegrees*vencnv);
