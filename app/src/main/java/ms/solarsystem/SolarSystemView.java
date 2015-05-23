@@ -1,4 +1,7 @@
 package ms.solarsystem;
+//Version 1.1
+//changed pref theme
+
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
