@@ -1,6 +1,7 @@
 package ms.solarsystem;
-//Version 1.1
+//Version 1.2
 //changed pref theme
+///
 
 import android.app.Application;
 import android.content.Context;
