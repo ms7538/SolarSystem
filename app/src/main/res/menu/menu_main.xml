@@ -6,8 +6,14 @@
         android:title="Speed:"
         app:showAsAction= "always|withText"/>
     <item
+        android:id="@+id/menu_spinner"
+        android:title="ACTUAL"
+        app:showAsAction="always"
+        />
+
+    <item
         android:id="@+id/action_compose"
-        android:title="                                                 "
+        android:title="                                                                            "
         app:showAsAction= "ifRoom|withText"/>
     <item
         android:id="@+id/action_settings"

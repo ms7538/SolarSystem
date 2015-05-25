@@ -8,19 +8,19 @@ import android.support.annotation.DrawableRes;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
-
-
+    private String cs;
+    private int count1=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         View solarSystemView = new SolarSystemView(this);
@@ -34,9 +34,11 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         return true;
     }
 
@@ -52,10 +54,22 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
+        if (id == R.id.menu_spinner) {
 
+           int modch= count1 % 4;
+           count1++;
+           switch (modch){
+               case 0: item.setTitle("HOURS"); break;
+               case 1: item.setTitle("DAYS"); break;
+               case 2: item.setTitle("MONTHS"); break;
+               case 3: item.setTitle("ACTUAL"); break;
+           }
+           return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
+
+
+
