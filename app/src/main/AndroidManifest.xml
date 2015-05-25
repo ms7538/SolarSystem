@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/Theme.AppCompat.CompactMenu"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:name="ms.solarsystem.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName="ms.solarsystem.MainActivity" >

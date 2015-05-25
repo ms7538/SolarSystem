@@ -360,7 +360,7 @@ public class SolarSystemView extends View {
     private void update2() {
 
         if(Suncolor==Suncolor2){
-            thcns=.1;
+            thcns=1;
             Suncolor="#ffea7d";
         }else {
             thcns=.0001;
