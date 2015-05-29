@@ -24,7 +24,7 @@ import android.widget.Toast;
 import android.util.Log;
 
 public class SolarSystemView extends View {
-
+        //from asus
     private static int NONE = 0;
     private static int DRAG = 1;
     private static int ZOOM = 2;
