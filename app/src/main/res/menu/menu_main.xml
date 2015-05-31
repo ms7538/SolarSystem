@@ -2,21 +2,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
-    <item android:id="@+id/action_search"
+    <item
+        android:id="@+id/loc_reset"
+        android:title="RESET"
+        app:showAsAction="always|withText"/>
+
+    <item
+
+        android:title="                                                                          "
+        app:showAsAction= "always|withText"/>
+    <item
         android:title="Speed:"
         app:showAsAction= "always|withText"/>
     <item
         android:id="@+id/menu_spinner"
         android:title="ACTUAL"
-        app:showAsAction="always"
+        app:showAsAction="always|withText"
         />
 
     <item
-        android:id="@+id/action_compose"
-        android:title="                                                                            "
-        app:showAsAction= "ifRoom|withText"/>
+
+        android:title="                                                                          "
+        app:showAsAction= "always|withText"/>
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        app:showAsAction= "ifRoom|withText"/>
+        app:showAsAction= "never"/>
 </menu>
+
