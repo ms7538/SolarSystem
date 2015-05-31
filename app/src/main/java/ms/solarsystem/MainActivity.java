@@ -55,16 +55,19 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         if (id == R.id.menu_spinner) {
-
-           int modch= count1 % 4;
+            SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
+            SharedPreferences.Editor editor = mSettings.edit();
+            int modch= count1 % 4;
            count1++;
            switch (modch){
-               case 0: item.setTitle("HOURS"); break;
-               case 1: item.setTitle("DAYS"); break;
-               case 2: item.setTitle("MONTHS"); break;
-               case 3: item.setTitle("ACTUAL"); break;
+               case 0: item.setTitle("ACTUAL"); ;editor.putString("id", "act");break;
+               case 1: item.setTitle("HOURS");editor.putString("id", "hrs"); break;
+               case 2: item.setTitle("DAYS");;editor.putString("id", "dys"); break;
+               case 3: item.setTitle("MONTHS");;editor.putString("id", "mth"); break;
+
            }
-           return true;
+            editor.commit();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

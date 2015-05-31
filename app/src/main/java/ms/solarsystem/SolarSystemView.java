@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -334,7 +335,14 @@ public class SolarSystemView extends View {
     // Detect collision and update the position of the ball.
     private void update() {
         // Get new (x,y) position
-
+        SharedPreferences mSettings = getContext().getSharedPreferences("Settings", 0);
+        String spd= mSettings.getString("id", "missing");
+        if (spd=="hrs"){thcns=.01;
+        }else if(spd=="dys"){thcns=.1;
+        }else if(spd=="mth") {
+            thcns = .5;
+        }else if(spd=="act"){thcns=.001;}
+       // String rotspd= ;
         theta-=thcns*1; Vtheta-=vencnv*thcns;Mrctheta-=mrccnv*thcns;Mrstheta-=thcns*mrscnv;/// 365/ orb period of planets
         double Ex=radearth* Math.cos(Math.toRadians(theta));
         double Ey=radearth* Math.sin(Math.toRadians(theta));
@@ -360,10 +368,10 @@ public class SolarSystemView extends View {
     private void update2() {
 
         if(Suncolor==Suncolor2){
-            thcns=1;
+           // thcns=1;
             Suncolor="#ffea7d";
         }else {
-            thcns=.0001;
+           /// thcns=.0001;
             Suncolor=Suncolor2;
         }
     }
