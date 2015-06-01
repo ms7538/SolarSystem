@@ -336,13 +336,25 @@ public class SolarSystemView extends View {
     private void update() {
         // Get new (x,y) position
         SharedPreferences mSettings = getContext().getSharedPreferences("Settings", 0);
+        SharedPreferences.Editor editor = mSettings.edit();
         String spd= mSettings.getString("id", "missing");
         if (spd=="hrs"){thcns=.01;
-        }else if(spd=="dys"){thcns=.1;
+        }else if(spd=="dys"){thcns=.2;
         }else if(spd=="mth") {
-            thcns = .5;
-        }else if(spd=="act"){thcns=.001;}
-       // String rotspd= ;
+            thcns = .99;
+        }else if(spd=="act"){thcns=.001;
+        }else if(spd=="wks"){thcns=.5;}
+       String RLoc=mSettings.getString("reset", "off");
+        if (RLoc=="on"){
+            theta=130-earthdegrees;// earth at 139 on may 12 2015
+            Vtheta=200-(earthdegrees*vencnv);
+            Mrctheta=180-(earthdegrees*mrccnv);
+            Mrstheta=300-(earthdegrees*mrscnv);
+            editor.putString("reset", "off");
+            editor.commit();
+        }
+
+
         theta-=thcns*1; Vtheta-=vencnv*thcns;Mrctheta-=mrccnv*thcns;Mrstheta-=thcns*mrscnv;/// 365/ orb period of planets
         double Ex=radearth* Math.cos(Math.toRadians(theta));
         double Ey=radearth* Math.sin(Math.toRadians(theta));
@@ -368,10 +380,8 @@ public class SolarSystemView extends View {
     private void update2() {
 
         if(Suncolor==Suncolor2){
-           // thcns=1;
             Suncolor="#ffea7d";
         }else {
-           /// thcns=.0001;
             Suncolor=Suncolor2;
         }
     }
@@ -387,8 +397,8 @@ public class SolarSystemView extends View {
         }
     }
 
-    int update3() {
-        return 1;
+    void update3() {
+
 
     }
 

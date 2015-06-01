@@ -62,14 +62,21 @@ public class MainActivity extends ActionBarActivity {
            switch (modch){
 
                case 0: item.setTitle("HOURS ");editor.putString("id", "hrs"); break;
-               case 1: item.setTitle("DAYS  ");;editor.putString("id", "dys"); break;
-               case 2: item.setTitle("MONTHS");;editor.putString("id", "mth"); break;
-               case 3: item.setTitle("ACTUAL"); ;editor.putString("id", "act");break;
+               case 1: item.setTitle("DAYS  ");editor.putString("id", "dys"); break;
+               case 2: item.setTitle("WEEKS"); editor.putString("id", "wks"); break;
+               case 3: item.setTitle("MONTHS");editor.putString("id", "mth"); break;
+               case 4: item.setTitle("ACTUAL");editor.putString("id", "act");break;
            }
             editor.commit();
             return true;
         }
-
+        if (id == R.id.loc_reset) {
+            SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putString("reset", "on");
+            editor.commit();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
