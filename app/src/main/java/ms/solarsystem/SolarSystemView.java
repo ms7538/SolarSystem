@@ -1,6 +1,6 @@
 package ms.solarsystem;
-//Version 0.1.3
-//changed pref theme
+//Version 0.1.3 (master)
+
 ///
 
 import android.app.Application;

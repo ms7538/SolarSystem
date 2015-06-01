@@ -57,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.menu_spinner) {
             SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
             SharedPreferences.Editor editor = mSettings.edit();
-            int modch= count1 % 4;
+            int modch= count1 % 5;
            count1++;
            switch (modch){
 
