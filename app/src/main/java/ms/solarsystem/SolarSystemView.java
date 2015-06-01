@@ -18,8 +18,11 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Formatter;
+import java.util.GregorianCalendar;
+
 import android.graphics.Typeface;
 import android.widget.Toast;
 import android.util.Log;
@@ -85,6 +88,8 @@ public class SolarSystemView extends View {
     Calendar c = Calendar.getInstance();
     int dyr = c.get(Calendar.DAY_OF_YEAR);
     int yr = c.get(Calendar.YEAR)-1;
+    int dte= c.get(Calendar.DATE);
+
     //int oyr=2014; int oday=132;
     double dayspass= (yr * 365.25)+dyr-735745.5;
     private double earthdegrees=(dayspass*0.98563);
@@ -184,7 +189,6 @@ public class SolarSystemView extends View {
             Marsorbclr="#e0301e";
             Venorbclr= "#fffae2";
         }
-        // Log.i("myapp", unitType);
 
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.parseColor(Mercorbclr));
@@ -352,6 +356,12 @@ public class SolarSystemView extends View {
             Mrstheta=300-(earthdegrees*mrscnv);
             editor.putString("reset", "off");
             editor.commit();
+            Calendar cal = new GregorianCalendar();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            dateFormat.setTimeZone(cal.getTimeZone());
+            String rmess="Planet Locations Reset to: "+dateFormat.format(cal.getTime()) ;
+            Toast.makeText(getContext(),rmess ,
+                    Toast.LENGTH_SHORT).show();
         }
 
 
