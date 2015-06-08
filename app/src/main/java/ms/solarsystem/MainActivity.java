@@ -82,7 +82,7 @@ public class MainActivity extends ActionBarActivity {
            String sel= mSettings.getString("orbits","on");
             if (sel=="on"){
                 item.setTitle("OFF");editor.putString("orbits", "off");
-            }else {
+            }else if(sel=="off") {
                 item.setTitle("ON");editor.putString("orbits", "on");
             }
 
