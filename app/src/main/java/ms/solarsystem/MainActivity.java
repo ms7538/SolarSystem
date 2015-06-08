@@ -50,10 +50,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-        }
+
         if (id == R.id.menu_spinner) {
             SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
             SharedPreferences.Editor editor = mSettings.edit();
@@ -77,6 +74,22 @@ public class MainActivity extends ActionBarActivity {
             editor.commit();
             return true;
         }
+
+
+        if (id == R.id.orbitssel) {
+            SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
+            SharedPreferences.Editor editor = mSettings.edit();
+           String sel= mSettings.getString("orbits","on");
+            if (sel=="on"){
+                item.setTitle("OFF");editor.putString("orbits", "off");
+            }else {
+                item.setTitle("ON");editor.putString("orbits", "on");
+            }
+
+            editor.commit();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -18,8 +18,11 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Formatter;
+import java.util.GregorianCalendar;
+
 import android.graphics.Typeface;
 import android.widget.Toast;
 import android.util.Log;
@@ -85,6 +88,8 @@ public class SolarSystemView extends View {
     Calendar c = Calendar.getInstance();
     int dyr = c.get(Calendar.DAY_OF_YEAR);
     int yr = c.get(Calendar.YEAR)-1;
+    int dte= c.get(Calendar.DATE);
+
     //int oyr=2014; int oday=132;
     double dayspass= (yr * 365.25)+dyr-735745.5;
     private double earthdegrees=(dayspass*0.98563);
@@ -100,12 +105,9 @@ public class SolarSystemView extends View {
     // Status message to show Ball's (x,y) position and speed.
     private StringBuilder statusMsg = new StringBuilder();
     private Formatter formatter = new Formatter(statusMsg);  // Formatting the statusMsg
-    // private StringBuilder statusMsg2 = new StringBuilder();
-    //private Formatter formatter2 = new Formatter(statusMsg2);
 
-    SharedPreferences sharedPrefs =
-            PreferenceManager.getDefaultSharedPreferences(getContext());
-//
+
+
 
     // Constructor
     public SolarSystemView(Context context) {
@@ -121,10 +123,7 @@ public class SolarSystemView extends View {
         this.requestFocus();
         // To enable touch mode
         this.setFocusableInTouchMode(true);
-        SharedPreferences sharedPrefs =
-                PreferenceManager.getDefaultSharedPreferences(context);
-        // Log.i("dayyear", dayOfyear);
-        //Log.i("dayyear", dp);
+
 
 
     }
@@ -168,24 +167,6 @@ public class SolarSystemView extends View {
         //because the translation amount also gets scaled according to how much we've zoomed into the canvas.
         canvas.translate(translateX / scaleFactor, translateY / scaleFactor);
         //String unitType = getContext().getString(R.string.pref_units_key);
-
-        String unitType = sharedPrefs.getString(
-                getContext().getString(R.string.pref_units_key),
-                getContext().getString(R.string.pref_units_metric));
-        if (unitType.equals(getContext().getString(R.string.pref_units_imperial))) {
-            Earthorbclr="#090404";
-            Mercorbclr="#090404";
-            Marsorbclr="#090404";
-            Venorbclr= "#090404";
-        } else  {
-
-            Earthorbclr="#017ed6";
-            Mercorbclr="#999998";
-            Marsorbclr="#e0301e";
-            Venorbclr= "#fffae2";
-        }
-        // Log.i("myapp", unitType);
-
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.parseColor(Mercorbclr));
         canvas.drawCircle(656, 302, flrdmrc, paint);
@@ -352,9 +333,26 @@ public class SolarSystemView extends View {
             Mrstheta=300-(earthdegrees*mrscnv);
             editor.putString("reset", "off");
             editor.commit();
+            Calendar cal = new GregorianCalendar();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+            dateFormat.setTimeZone(cal.getTimeZone());
+            String rmess="Planet Locations Reset to: "+dateFormat.format(cal.getTime()) ;
+            Toast.makeText(getContext(),rmess ,
+                    Toast.LENGTH_SHORT).show();
         }
 
-
+        String Orbs=mSettings.getString("orbits","on");
+        if (Orbs=="on"){
+            Earthorbclr="#017ed6";
+            Mercorbclr="#999998";
+            Marsorbclr="#e0301e";
+            Venorbclr= "#fffae2";
+        }else if (Orbs=="off") {
+            Earthorbclr="#090404";
+            Mercorbclr="#090404";
+            Marsorbclr="#090404";
+            Venorbclr= "#090404";
+        }
         theta-=thcns*1; Vtheta-=vencnv*thcns;Mrctheta-=mrccnv*thcns;Mrstheta-=thcns*mrscnv;/// 365/ orb period of planets
         double Ex=radearth* Math.cos(Math.toRadians(theta));
         double Ey=radearth* Math.sin(Math.toRadians(theta));

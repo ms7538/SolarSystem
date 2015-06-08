@@ -8,8 +8,7 @@
         app:showAsAction="always|withText"/>
 
     <item
-
-        android:title="                                                                          "
+        android:title="                     "
         app:showAsAction= "always|withText"/>
     <item
         android:title="Speed:"
@@ -19,11 +18,17 @@
         android:title="ACTUAL"
         app:showAsAction="always|withText"
         />
+    <item
+        android:title="                     "
+        app:showAsAction= "always|withText"/>
+    <item
 
+        android:title="ORBITS:"
+        app:showAsAction= "always|withText"/>
 
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        app:showAsAction= "never"/>
+        android:id="@+id/orbitssel"
+        android:title="ON"
+        app:showAsAction= "always|withText"/>
 </menu>
 
