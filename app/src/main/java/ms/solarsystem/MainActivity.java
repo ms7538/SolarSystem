@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends ActionBarActivity {
     private String cs;
     private int count1=0;
-
+    private int count2=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,21 +71,22 @@ public class MainActivity extends ActionBarActivity {
             SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
             SharedPreferences.Editor editor = mSettings.edit();
             editor.putString("reset", "on");
+
             editor.commit();
             return true;
         }
 
 
         if (id == R.id.orbitssel) {
+
             SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
             SharedPreferences.Editor editor = mSettings.edit();
-           String sel= mSettings.getString("orbits","on");
-            if (sel=="on"){
-                item.setTitle("OFF");editor.putString("orbits", "off");
-            }else if(sel=="off") {
-                item.setTitle("ON");editor.putString("orbits", "on");
-            }
+            int modch1= count2 % 2;
 
+            switch (modch1){
+                case 0: item.setTitle("OFF");editor.putString("orbits", "off"); count2++;break;
+                case 1: item.setTitle("ON"); editor.putString("orbits", "on");count2++; break;
+            }
             editor.commit();
             return true;
         }

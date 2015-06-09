@@ -341,7 +341,7 @@ public class SolarSystemView extends View {
                     Toast.LENGTH_SHORT).show();
         }
 
-        String Orbs=mSettings.getString("orbits","on");
+        String Orbs=mSettings.getString("orbits","?");
         if (Orbs=="on"){
             Earthorbclr="#017ed6";
             Mercorbclr="#999998";
@@ -352,7 +352,12 @@ public class SolarSystemView extends View {
             Mercorbclr="#090404";
             Marsorbclr="#090404";
             Venorbclr= "#090404";
-        }
+        }else if (Orbs=="?") {
+            Earthorbclr="#017ed6";
+            Mercorbclr="#999998";
+            Marsorbclr="#e0301e";
+            Venorbclr= "#fffae2";}
+
         theta-=thcns*1; Vtheta-=vencnv*thcns;Mrctheta-=mrccnv*thcns;Mrstheta-=thcns*mrscnv;/// 365/ orb period of planets
         double Ex=radearth* Math.cos(Math.toRadians(theta));
         double Ey=radearth* Math.sin(Math.toRadians(theta));
