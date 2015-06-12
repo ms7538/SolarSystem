@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="ms.solarsystem.SolarSystem">
+
+    <item
+        android:id="@+id/loc_reset"
+        android:title="RESET"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:title="                     "
+        app:showAsAction= "always|withText"/>
+    <item
+        android:title="Speed:"
+        app:showAsAction= "always|withText"/>
+    <item
+        android:id="@+id/menu_spinner"
+        android:title="ACTUAL"
+        app:showAsAction="always|withText"
+        />
+    <item
+        android:title="                     "
+        app:showAsAction= "always|withText"/>
+    <item
+
+        android:title="ORBITS:"
+        app:showAsAction= "always|withText"/>
+
+    <item
+        android:id="@+id/orbitssel"
+        android:title="ON"
+        app:showAsAction= "always|withText"/>
+</menu>
