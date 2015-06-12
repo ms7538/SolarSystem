@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         //noinspection SimplifiableIfStatement
         int id = item.getItemId();
-        
+
 
         return super.onOptionsItemSelected(item);
     }
