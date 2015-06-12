@@ -12,7 +12,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:logo="@mipmap/ic_launcher"
-            android:screenOrientation="landscape" >
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,8 @@
         <activity
             android:name=".SolarSystem"
             android:label="@string/title_activity_solar_system"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ms.solarsystem.MainActivity" />
