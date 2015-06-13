@@ -23,8 +23,8 @@ public class MainActivity extends ActionBarActivity {
         SharedPreferences mSettings = this.getSharedPreferences("Settings", 0);
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString("orbits", "on"); editor.commit();
-        Button buttonToggleActionBar = (Button)findViewById(R.id.innerorbs);
-        buttonToggleActionBar.setOnClickListener(new OnClickListener() {
+        Button IObutton = (Button)findViewById(R.id.innerorbs);
+        IObutton.setOnClickListener(new OnClickListener() {
 
 
             @Override
@@ -33,7 +33,16 @@ public class MainActivity extends ActionBarActivity {
                 MainActivity.this.startActivity(myIntent);
             }
         });
+        Button OObutton = (Button)findViewById(R.id.oorbs);
+        OObutton.setOnClickListener(new OnClickListener() {
 
+
+            @Override
+            public void onClick(View arg0) {
+                Intent myIntent = new Intent(MainActivity.this, OuterOrbits.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
 
     }
 
