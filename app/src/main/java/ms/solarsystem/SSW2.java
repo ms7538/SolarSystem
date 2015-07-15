@@ -98,13 +98,15 @@ public class SSW2 extends View {
     //int oyr=2014; int oday=132;
     double dayspass = (yr * 365.25) + dyr - 735745.5;
     private double earthdegrees = (dayspass * 0.98563);
-    private double vencnv = 1.625524007069; //venus covers 1.622.. degress while earth covers 1 degree
-    private double mrccnv = 4.0;//203082904;
-    private double mrscnv = 0.5316864552961;///
+    private double jupcnv = 0.0830911764;
+    private double satcnv = 0.0334596745;
+    private double uracnv = 0.01173129469;
+    private double nepcnv = .005981056995;///
     private double theta = 130 - earthdegrees;// earth at 139 on may 12 2015
-    private double Vtheta = 200 - (earthdegrees * vencnv);
-    private double Mrctheta = 180 - (earthdegrees * mrccnv);
-    private double Mrstheta = 300 - (earthdegrees * mrscnv);
+    private double Juptheta = 200 - (earthdegrees * jupcnv);
+    private double Sattheta = 180 - (earthdegrees * satcnv);
+    private double Uratheta = 180 - (earthdegrees * uracnv);
+    private double Neptheta = 300 - (earthdegrees * nepcnv);
     //String dayOfyear = Integer.toString(dyr);
     String dp = Double.toString(dayspass);
     // Status message to show Ball's (x,y) position and speed.
@@ -169,14 +171,16 @@ public class SSW2 extends View {
         canvas.translate(translateX / scaleFactor, translateY / scaleFactor);
         //String unitType = getContext().getString(R.string.pref_units_key);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.parseColor(Mercorbclr));
-        canvas.drawCircle(656, 302, flrdmrc, paint);
-        paint.setColor(Color.parseColor(Venorbclr));
-        canvas.drawCircle(650, 300, flrdvev, paint);
         paint.setColor(Color.parseColor(Earthorbclr));
         canvas.drawCircle(650, 300, flrdearth, paint);
-        paint.setColor(Color.parseColor(Marsorbclr));
-        canvas.drawCircle(645, 313, flrdmrs, paint);
+        paint.setColor(Color.parseColor(Juporbclr));
+        canvas.drawCircle(656, 302, flrdjup, paint);
+        paint.setColor(Color.parseColor(Satorbcolor));
+        canvas.drawCircle(650, 300, flrdsat, paint);
+        paint.setColor(Color.parseColor(Uraorbclr));
+        canvas.drawCircle(650, 300, flrdura, paint);
+        paint.setColor(Color.parseColor(Neptorbclr));
+        canvas.drawCircle(645, 313, flrdnep, paint);
         // Draw Planets
         paint.setStyle(Paint.Style.FILL);
         ballBounds.set(sunX - sunRadius, sunY - sunRadius, sunX + sunRadius, sunY + sunRadius);
@@ -185,33 +189,40 @@ public class SSW2 extends View {
         ballBounds.set(earthX - earthRadius, earthY - earthRadius, earthX + earthRadius, earthY + earthRadius);
         paint.setColor(Color.parseColor(Earthcolor));
         canvas.drawOval(ballBounds, paint);
-        ballBounds.set(venX - venusRadius, venY - venusRadius, venX + venusRadius, venY + venusRadius);
-        paint.setColor(Color.parseColor(Vencolor));
+        ballBounds.set(jupX - jupRadius, jupY - jupRadius, jupX + jupRadius, jupY + jupRadius);
+        paint.setColor(Color.parseColor(Jupcolor));
         canvas.drawOval(ballBounds, paint);
-        ballBounds.set(mrcX - mrcRadius, mrcY - mrcRadius, mrcX + mrcRadius, mrcY + mrcRadius);
-        paint.setColor(Color.parseColor(Merccolor));
+        ballBounds.set(satX - saturnRadius, satY - saturnRadius, satX + saturnRadius, satY + saturnRadius);
+        paint.setColor(Color.parseColor(Satcolor));
         canvas.drawOval(ballBounds, paint);
-        ballBounds.set(mrsX - mrsRadius, mrsY - mrsRadius, mrsX + mrsRadius, mrsY + mrsRadius);
-        paint.setColor(Color.parseColor(Marscolor));
+        ballBounds.set(uraX - uraRadius, uraY - uraRadius, uraX + uraRadius, uraY + uraRadius);
+        paint.setColor(Color.parseColor(Uracolor));
+        canvas.drawOval(ballBounds, paint);
+        ballBounds.set(nepX - nepRadius, nepY - nepRadius, nepX + nepRadius, nepY + nepRadius);
+        paint.setColor(Color.parseColor(Neptcolor));
         canvas.drawOval(ballBounds, paint);
         paint.setTypeface(Typeface.MONOSPACE);
         paint.setTextSize(12);
-        formatter.format("MERCURY");
-        // Draw the status message
-        paint.setColor(Color.parseColor(Mercorbclr));
-        canvas.drawText(statusMsg.toString(), 627, 353, paint);
-        statusMsg.delete(0, statusMsg.length()); // Empty buffer
-        formatter.format("VENUS");
-        paint.setColor(Color.parseColor(Venorbclr));
-        canvas.drawText(statusMsg.toString(), 630, 420, paint);
-        statusMsg.delete(0, statusMsg.length()); // Empty buffer
-
         formatter.format("EARTH");
         paint.setColor(Color.parseColor(Earthorbclr));
         canvas.drawText(statusMsg.toString(), 629, 460, paint);
         statusMsg.delete(0, statusMsg.length()); // Empty buffer
-        formatter.format("MARS");
-        paint.setColor(Color.parseColor(Marsorbclr));
+
+        formatter.format("Jupiter");
+        // Draw the status message
+        paint.setColor(Color.parseColor(Juporbclr));
+        canvas.drawText(statusMsg.toString(), 627, 353, paint);
+        statusMsg.delete(0, statusMsg.length()); // Empty buffer
+        formatter.format("Saturn");
+        paint.setColor(Color.parseColor(Satorbcolor));
+        canvas.drawText(statusMsg.toString(), 630, 420, paint);
+        statusMsg.delete(0, statusMsg.length()); // Empty buffer
+        formatter.format("Uranus");
+        paint.setColor(Color.parseColor(Uraorbclr));
+        canvas.drawText(statusMsg.toString(), 629, 460, paint);
+        statusMsg.delete(0, statusMsg.length()); // Empty buffer
+        formatter.format("Neptune");
+        paint.setColor(Color.parseColor(Neptorbclr));
         canvas.drawText(statusMsg.toString(), 635, 551, paint);
         statusMsg.delete(0, statusMsg.length()); // Empty buffer
 
@@ -335,9 +346,10 @@ public class SSW2 extends View {
         String RLoc = mSettings.getString("reset", "off");
         if (RLoc == "on") {
             theta = 130 - earthdegrees;// earth at 139 on may 12 2015
-            Vtheta = 200 - (earthdegrees * vencnv);
-            Mrctheta = 180 - (earthdegrees * mrccnv);
-            Mrstheta = 300 - (earthdegrees * mrscnv);
+            Juptheta = 200 - (earthdegrees * jupcnv);
+            Sattheta = 200 - (earthdegrees * satcnv);
+            Uratheta = 180 - (earthdegrees * uracnv);
+            Neptheta = 300 - (earthdegrees * nepcnv);
             editor.putString("reset", "off");
             editor.commit();
             Calendar cal = new GregorianCalendar();
@@ -351,43 +363,50 @@ public class SSW2 extends View {
         String Orbs = mSettings.getString("orbits", "?");
         if (Orbs == "on") {
             Earthorbclr = "#017ed6";
-            Mercorbclr = "#999998";
-            Marsorbclr = "#e0301e";
-            Venorbclr = "#fffae2";
+            Juporbclr = "#999998";
+            Satorbcolor = "#e0301e";
+            Uraorbclr = "#fffae2";
+            Neptorbclr = "#fffae2";
         } else if (Orbs == "off") {
             Earthorbclr = "#090404";
-            Mercorbclr = "#090404";
-            Marsorbclr = "#090404";
-            Venorbclr = "#090404";
+            Juporbclr ="#090404";
+            Satorbcolor ="#090404";
+            Uraorbclr = "#090404";
+            Neptorbclr ="#090404";
+
         } else if (Orbs == "?") {
             Earthorbclr = "#017ed6";
-            Mercorbclr = "#999998";
-            Marsorbclr = "#e0301e";
-            Venorbclr = "#fffae2";
+            Juporbclr = "#999998";
+            Satorbcolor = "#e0301e";
+            Uraorbclr = "#fffae2";
+            Neptorbclr = "#fffae2";
         }
 
         theta -= thcns * 1;
-        Vtheta -= vencnv * thcns;
-        Mrctheta -= mrccnv * thcns;
-        Mrstheta -= thcns * mrscnv;/// 365/ orb period of planets
+        Juptheta -= jupcnv * thcns;
+        Sattheta -= satcnv * thcns;
+        Uratheta -= thcns * uracnv;/// 365/ orb period of planets
         double Ex = radearth * Math.cos(Math.toRadians(theta));
         double Ey = radearth * Math.sin(Math.toRadians(theta));
-        double Vx = radven * Math.cos(Math.toRadians(Vtheta));
-        double Vy = radven * Math.sin(Math.toRadians(Vtheta));
-        double Mrcx = radmrc * Math.cos(Math.toRadians(Mrctheta));
-        double Mrcy = radmrc * Math.sin(Math.toRadians(Mrctheta));
-        double Mrsx = radmrs * Math.cos(Math.toRadians(Mrstheta));
-        double Mrsy = radmrs * Math.sin(Math.toRadians(Mrstheta));
+        double Jx = radjup * Math.cos(Math.toRadians(Juptheta));
+        double Jy = radjup * Math.sin(Math.toRadians(Juptheta));
+        double Sx = radsat * Math.cos(Math.toRadians(Sattheta));
+        double Sy = radsat * Math.sin(Math.toRadians(Sattheta));
+        double Ux = radura * Math.cos(Math.toRadians(Uratheta));
+        double Uy = radura * Math.sin(Math.toRadians(Uratheta));
+        double Nx = radura * Math.cos(Math.toRadians(Neptheta));
+        double Ny = radura * Math.sin(Math.toRadians(Neptheta));
 
         earthX = 650 + (float) Ex;
         earthY = 300 + (float) Ey;
-        venX = 650 + (float) Vx;
-        venY = 300 + (float) Vy;
-        mrcX = 656 + (float) Mrcx;
-        mrcY = 302 + (float) Mrcy;
-        mrsX = 645 + (float) Mrsx;
-        mrsY = 313 + (float) Mrsy;
-
+        jupX = 650 + (float) Jx;
+        jupY = 300 + (float) Jy;
+        satX = 656 + (float) Sx;
+        satY = 302 + (float) Sy;
+        uraX = 645 + (float) Ux;
+        uraY = 313 + (float) Uy;
+        nepX = 645 + (float) Nx;
+        nepY = 313 + (float) Ny;
 
     }
 
