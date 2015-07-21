@@ -3,4 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context="ms.solarsystem.OuterOrbits">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/loc_reset1"
+        android:title="RESET"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:title="                     "
+        app:showAsAction= "always|withText"/>
+    <item
+        android:title="Speed:"
+        app:showAsAction= "always|withText"/>
+    <item
+        android:id="@+id/menu_spinner1"
+        android:title="ACTUAL"
+        app:showAsAction="always|withText"
+        />
+    <item
+        android:title="                     "
+        app:showAsAction= "always|withText"/>
+    <item
+
+        android:title="ORBITS:"
+        app:showAsAction= "always|withText"/>
+
+    <item
+        android:id="@+id/orbitssel1"
+        android:title="ON"
+        app:showAsAction= "always|withText"/>
 </menu>

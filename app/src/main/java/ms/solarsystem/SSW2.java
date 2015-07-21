@@ -360,7 +360,7 @@ public class SSW2 extends View {
                     Toast.LENGTH_SHORT).show();
         }
 
-        String Orbs = mSettings.getString("orbits", "?");
+        String Orbs = mSettings.getString("orbits1", "?");
         if (Orbs == "on") {
             Earthorbclr = "#017ed6";
             Juporbclr = "#999998";
